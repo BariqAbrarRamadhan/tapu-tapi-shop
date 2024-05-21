@@ -82,7 +82,10 @@ Route::group(['middleware' => 'admin'], function () {
 Route::get('/', [HomeController::class, 'home']);
 
 Route::get('cart', [PaymentController::class, 'cart']);
+Route::post('update_cart', [PaymentController::class, 'update_cart']);
 Route::get('cart/delete/{id}', [PaymentController::class, 'cart_delete']);
+
+Route::get('checkout', [PaymentController::class, 'checkout']);
 
 Route::post('product/add-to-cart', [PaymentController::class, 'add_to_cart']);
 

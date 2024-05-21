@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthFlutterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +19,9 @@ use App\Http\Controllers\AuthController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::prefix('auth')->group(function () {
+    Route::post('/signin', [AuthController::class, 'SignIn']);
+    Route::post('/signup', [AuthController::class, 'SignUp']);
+    Route::get('/signout', [AuthController::class, 'SignOut'])->middleware('auth:sanctum');
+});
 
-// Route::prefix('auth')->group(function () {
-//     Route::post('/signin', [AuthController::class, 'SignIn']);
-//     Route::post('admin', [AuthController::class, 'auth_login_admin']);
-//     Route::get('admin/logout', [AuthController::class, 'logout_admin'])->middleware('auth:sanctum');
-// });
-    // Route::get('/signout', [AuthController::class, 'SignOut'])
-
-// Route::get('/tokens', function (Request $request) {
-//     return $request->user()->tokens;
-// })->middleware('auth:sanctum');
-
-// Route::get('/me', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');

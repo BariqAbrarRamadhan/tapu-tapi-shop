@@ -9,6 +9,14 @@ use App\Models\ProductSizeModel;
 
 class PaymentController extends Controller
 {
+    public function checkout(Request $request)
+    {
+        $data['meta_title'] = 'Checkout';
+        $data['meta_description'] = '';
+        $data['meta_keywords'] = '';
+        return view('payment.checkout', $data);
+    }
+
     public function cart(Request $request)
     {
         $data['meta_title'] = 'Cart';
@@ -50,6 +58,20 @@ class PaymentController extends Controller
             ]
         ]);
 
+        return redirect()->back();
+    }
+
+    public function update_cart(Request $request)
+    {
+        dd($request->all());
+        foreach($request->cart as $cart) {
+            Cart::update($cart['id'], array (
+                'quantity' => array (
+                    'relative' => false,
+                    'value' => $cart['qty']
+                )
+            ));
+        }
         return redirect()->back();
     }
 }
