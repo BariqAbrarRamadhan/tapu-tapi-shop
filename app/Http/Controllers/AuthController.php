@@ -36,36 +36,23 @@ class AuthController extends Controller
         return redirect('admin');
     }
 
+    public function auth_register(Request $request)
+    {
+        $checkEmail = User::checkEmail($request->email);
+        if(empty($checkEmail)) {
+            $save = new User;
+            $save->name = $request->name;
+            $save->email = $request->email;
+            $save->password = Hash::make($request->password);
+            $save->save();
 
-    // public function auth_login_admin(Request $request)
-    // {
-    //     $user = User::where('email', $request->email)->first();
+            $json['status'] = 'true';
+            $json['message'] = 'Registrasi berhasil';
+        } else {
+            $json['status'] = 'false';
+            $json['message'] = 'Email sudah terdaftar';
+        }
+        echo json_encode($json);
+    }
 
-    //     if ($user != null && Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_admin' => 1, 'status' => 0, 'is_deleted' => 0])) {
-    //         return redirect('admin/dashboard');
-    //     } elseif ($user != null && Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_admin' => 0])) {
-    //         return redirect()->back()->with('error', 'Anda tidak memiliki akses ke halaman admin');
-    //     } elseif ($user != null && Hash::check($request->password, $user->password)) {
-    //         $token = $user->createToken('Personal Access Token')->plainTextToken;
-    //         $response = ['status' => 200, 'token' => $token, 'user' => $user, 'message' => 'Successfully Login! Welcome Back'];
-    //         return response()->json($response);
-    //     } elseif ($user == null) {
-    //         $response = ['status' => 500, 'message' => 'No account found with this email'];
-    //         return response()->json($response);
-    //     } else {
-    //         $response = ['status' => 500, 'message' => 'Wrong email or password! please try again'];
-    //         return response()->json($response);
-    //     }
-    // }
-
-    // public function logout_admin(Request $request)
-    // {
-    //     try {
-    //         $request->user()->currentAccessToken()->delete();
-    //         Auth::logout();
-    //         return redirect('admin')->with('success', 'Logout Successfully');
-    //     } catch (\Throwable $th) {
-    //         return redirect()->back()->with('error', 'Logout Failed');
-    //     }
-    // }
 }
