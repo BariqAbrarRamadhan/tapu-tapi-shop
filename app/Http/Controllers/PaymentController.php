@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Cart;
 use App\Models\ProductModel;
 use App\Models\ProductSizeModel;
+use App\Models\ShippingChargeModel;
+use Cart;
 
 class PaymentController extends Controller
 {
@@ -14,6 +15,7 @@ class PaymentController extends Controller
         $data['meta_title'] = 'Checkout';
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
+        $data['getShipping'] = ShippingChargeModel::getRecordActive();
         return view('payment.checkout', $data);
     }
 

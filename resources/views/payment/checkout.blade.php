@@ -104,28 +104,33 @@
 		                							<td>Subtotal:</td>
 		                							<td>Rp. {{ number_format(Cart::getSubTotal(), 0, ',', '.' ) }}</td>
 		                						</tr>
-																<tr>
-																	<td colspan="2">
-																	<div class="cart-discount">
-			            					<div class="input-group">
-				        						<input type="text" class="form-control" placeholder="coupon code">
-				        						<div class="input-group-append">
-													<button type="button" class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
-												</div><!-- .End .input-group-append -->
-			        						</div>
-			            			</div><!-- End .cart-discount -->
-																	</td>
-																</tr>
-																<tr class="summary-subtotal">
-		                							<td>Discount</td>
-		                							<td>Rp. 0</td>
-		                						</tr>
+																<tr class="summary-shipping">
+	                							<td>Shipping:</td>
+	                							<td>&nbsp;</td>
+	                						</tr>
+															@foreach($getShipping as $shipping)
+															<tr class="summary-shipping-row">
+	                							<td>
+													<div class="custom-control custom-radio">
+														<input type="radio" data-price="{{ !empty($shipping->price) ? $shipping->price : 0 }}" id="free-shipping{{ $shipping->id }}" name="shipping" class="custom-control-input getShippingCharge">
+														<label class="custom-control-label" for="free-shipping{{ $shipping->id }}">{{ $shipping->name }}</label>
+													</div><!-- End .custom-control -->
+	                							</td>
+	                							<td>
+																	@if(!empty($shipping->price))
+																		Rp. {{ number_format($shipping->price, 0, ',', '.' ) }}
+																	@endif
+																</td>
+	                						</tr><!-- End .summary-shipping-row -->
+															@endforeach
 		                						<tr class="summary-total">
 		                							<td>Total:</td>
-		                							<td>Rp. {{ number_format(Cart::getSubTotal(), 0, ',', '.' ) }}</td>
+		                							<td><span id="getPayableTotal">Rp. {{ number_format(Cart::getSubTotal(), 0, ',', '.' ) }}</span></td>
 		                						</tr><!-- End .summary-total -->
 		                					</tbody>
 		                				</table><!-- End .table table-summary -->
+														<input type="hidden" id=""getShippingChargeTotal value="0">
+														<input type="hidden" id=""PayableTotal value="{{ Cart::getSubTotal() }}">
 
 		                				<div class="accordion-summary" id="accordion-payment">
 										    <div class="card">
@@ -189,5 +194,22 @@
 
 @endsection
 @section('script')
+<script type="text/javascript">
+	// $('body').delegate('.getShippingCharge', 'change', function(){
+	// 	var price = $(this).attr('data-price');
+	// 	var total = $('#getPayableTotal').val();
+	// 	var final_total = parseFloat(price) + parseFloat(total);
+	// 	$('#getPayableTotal').html(final_total.toLocaleString('id-ID'));
+	// });
+	$('body').on('change', '.getShippingCharge', function(){
+            var price = parseFloat($(this).data('price'));
+            var subtotal = {{ Cart::getSubTotal() }};
+            $('#getShippingChargeTotal').val(price);
+            var total = subtotal + price;
+            $('#getPayableTotal').html('Rp. ' + total.toLocaleString('id-ID'));
+						console.log(price);
+						console.log(total);
+        });
+</script>
 
 @endsection
