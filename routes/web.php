@@ -27,9 +27,7 @@ use App\Http\Controllers\PaymentController;
 */
 
 Route::get('admin', [AuthController::class, 'login_admin']);
-
 Route::post('admin', [AuthController::class, 'auth_login_admin']);
-
 Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 
 Route::group(['middleware' => 'admin'], function () {
@@ -90,6 +88,7 @@ Route::group(['middleware' => 'admin'], function () {
 Route::get('/', [HomeController::class, 'home']);
 
 Route::post('auth_register', [AuthController::class, 'auth_register']);
+Route::post('auth_login', [AuthController::class, 'auth_login']);
 
 Route::get('cart', [PaymentController::class, 'cart']);
 Route::post('update_cart', [PaymentController::class, 'update_cart']);

@@ -55,15 +55,16 @@
                             </ul>
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                    <form action="#">
+                                    <form action="" id="SubmitFormLogin" method="post">
+                                    {{ csrf_field() }}
                                         <div class="form-group">
-                                            <label for="singin-email">Username or email address *</label>
-                                            <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                            <label for="singin-email">Email Address <span style="color: red">*</span></label>
+                                            <input type="text" class="form-control" id="singin-email" name="email" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="singin-password">Password *</label>
-                                            <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                            <label for="singin-password">Password <span style="color: red">*</span></label>
+                                            <input type="password" class="form-control" id="singin-password" name="password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
@@ -72,7 +73,7 @@
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="signin-remember">
+                                                <input type="checkbox" name="is_remember" class="custom-control-input" id="signin-remember">
                                                 <label class="custom-control-label" for="signin-remember">Remember Me</label>
                                             </div><!-- End .custom-checkbox -->
 
@@ -149,6 +150,22 @@
     <script src="{{ url('assets/js/main.js') }}"></script>
 
     <script type="text/javascript">
+        $('body').delegate('#SubmitFormLogin', 'submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{{ url('auth_login') }}",
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(data) {
+                    alert(data.message);
+                    if (data.status == true) {
+                        location.reload();
+                    }
+                }, error: function(data) {
+                }
+            });
+        });
         $('body').delegate('#SubmitFormRegister', 'submit', function(e) {
             e.preventDefault();
             $.ajax({

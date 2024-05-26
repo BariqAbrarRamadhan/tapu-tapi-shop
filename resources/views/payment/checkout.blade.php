@@ -129,8 +129,8 @@
 		                						</tr><!-- End .summary-total -->
 		                					</tbody>
 		                				</table><!-- End .table table-summary -->
-														<input type="hidden" id=""getShippingChargeTotal value="0">
-														<input type="hidden" id=""PayableTotal value="{{ Cart::getSubTotal() }}">
+														<input type="hidden" id="getShippingChargeTotal" value="0">
+														<input type="hidden" id="PayableTotal" value="{{ Cart::getSubTotal() }}">
 
 		                				<div class="accordion-summary" id="accordion-payment">
 										    <div class="card">

@@ -33,8 +33,22 @@ class AuthController extends Controller
     public function logout_admin()
     {
         Auth::logout();
-        return redirect('admin');
+        return redirect(url(''));
     }
+
+    public function auth_login(Request $request)
+    {
+        $remember = !empty($request->is_remember) ? true : false;
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 0, 'is_deleted' => 0], $remember)) {
+            $json['status'] = 'true';
+            $json['message'] = 'Login berhasil';
+        } else {
+            $json['status'] = 'false';
+            $json['message'] = 'Email atau password salah';
+        }
+        echo json_encode($json);
+    }
+    
 
     public function auth_register(Request $request)
     {
