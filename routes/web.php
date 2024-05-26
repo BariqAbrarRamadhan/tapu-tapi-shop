@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ShippingChargeController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController as ProductFront;
 use App\Http\Controllers\PaymentController;
@@ -68,14 +69,22 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/color/edit/{id}', [ColorController::class, 'edit']);
     Route::post('admin/color/edit/{id}', [ColorController::class, 'update']);
     Route::get('admin/color/delete/{id}', [ColorController::class, 'delete']);
-
+    
     Route::get('admin/product/list', [ProductController::class, 'list']);
     Route::get('admin/product/add', [ProductController::class, 'add']);
     Route::post('admin/product/add', [ProductController::class, 'insert']);
     Route::get('admin/product/edit/{id}', [ProductController::class, 'edit']);
     Route::post('admin/product/edit/{id}', [ProductController::class, 'update']);
-    
+    Route::get('admin/product/delete/{id}', [ProductController::class, 'delete']);
+
     Route::get('admin/product/image_delete/{id}', [ProductController::class, 'image_delete']);
+
+    Route::get('admin/order/list', [OrderController::class, 'list']);
+    // Route::get('admin/order/add', [OrderController::class, 'add']);
+    // Route::post('admin/order/add', [OrderController::class, 'insert']);
+    Route::get('admin/order/edit/{id}', [OrderController::class, 'edit']);
+    Route::post('admin/order/edit/{id}', [OrderController::class, 'update']);
+    Route::get('admin/order/delete/{id}', [OrderController::class, 'delete']);
     
     Route::get('admin/shipping_charge/list', [ShippingChargeController::class, 'list']);
     Route::get('admin/shipping_charge/add', [ShippingChargeController::class, 'add']);
