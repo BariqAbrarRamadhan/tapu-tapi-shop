@@ -95,6 +95,7 @@ Route::post('update_cart', [PaymentController::class, 'update_cart']);
 Route::get('cart/delete/{id}', [PaymentController::class, 'cart_delete']);
 
 Route::get('checkout', [PaymentController::class, 'checkout']);
+Route::post('checkout/place_order', [PaymentController::class, 'place_order']);
 
 Route::post('product/add-to-cart', [PaymentController::class, 'add_to_cart']);
 
