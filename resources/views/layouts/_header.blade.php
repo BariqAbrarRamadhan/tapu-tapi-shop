@@ -1,40 +1,19 @@
 <header class="header">
             <div class="header-top">
-                <div class="container">
+                <div class="container" style="padding: 16px;">
                     <div class="header-left">
-                        <div class="header-dropdown">
-                            <a href="#">Usd</a>
-                            <div class="header-menu">
-                                <ul>
-                                    <li><a href="#">Usd</a></li>
-                                </ul>
-                            </div><!-- End .header-menu -->
-                        </div><!-- End .header-dropdown -->
-
-                        <div class="header-dropdown">
-                            <a href="#">Eng</a>
-                            <div class="header-menu">
-                                <ul>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </div><!-- End .header-menu -->
-                        </div><!-- End .header-dropdown -->
                     </div><!-- End .header-left -->
 
                     <div class="header-right">
                         <ul class="top-menu">
                             <li>
-                                <a href="#">Links</a>
                                 <ul>
-                                    <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
-                                    <li><a href="{{ url('wishlist')}}"><i class="icon-heart-o"></i>My Wishlist <span>(3)</span></a></li>
-                                    <li><a href="{{ url('about')}}">About Us</a></li>
-                                    <li><a href="{{ url('contact')}}">Contact Us</a></li>
                                     @if(!empty(Auth::check()))
                                     <li><a href="{{ url('admin/logout') }}" ><i class="icon-user"></i>Logout</a></li>
                                     @else
                                     <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
                                     @endif
+                                    <li><a href="{{ url('admin') }}" ><i class="icon-user"></i>Admin</a></li>
                                 </ul>
                             </li>
                         </ul><!-- End .top-menu -->
@@ -51,7 +30,7 @@
                         </button>
 
                         <a href="{{ url('')}}" class="logo">
-                            <img src="{{ url('assets/images/logo.png')}}" alt="Logo" width="105" height="25">
+                            <img src="{{ url('assets/images/tts.png')}}" alt="Logo" width="105" height="25">
                         </a>
 
                         <nav class="main-nav">
@@ -93,15 +72,6 @@
                     </div><!-- End .header-left -->
 
                     <div class="header-right">
-                        <div class="header-search">
-                            <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
-                            <form action="{{ url('search')}}" method="get">
-                                <div class="header-search-wrapper">
-                                    <label for="q" class="sr-only">Search</label>
-                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search in..."  value="{{ !empty(Request::get('q')) ? Request::get('q') : '' }}" required>
-                                </div><!-- End .header-search-wrapper -->
-                            </form>
-                        </div><!-- End .header-search -->
 
                         <div class="dropdown cart-dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">

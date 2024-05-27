@@ -50,21 +50,6 @@
 								Showing <span>{{ $firstEntry }} to {{ $lastEntry }} of {{ $totalEntries }}</span> Products
 							</div><!-- End .toolbox-info -->
 						</div><!-- End .toolbox-left -->
-
-						<div class="toolbox-right">
-							<div class="toolbox-sort">
-								<label for="sortby">Sort by:</label>
-								<div class="select-custom">
-									<select name="sortby" id="sortby" class="form-control ChangeSortBy">
-										<option value="">Select</option>
-										<option value="popularity">Most Popular</option>
-										<option value="rating">Most Rated</option>
-										<option value="date">Date</option>
-									</select>
-								</div>
-							</div>
-
-						</div><!-- End .toolbox-right -->
 					</div><!-- End .toolbox -->
 					<div id="getProductAjax">
 						@include('product._list');
@@ -88,33 +73,7 @@
 					<div class="sidebar sidebar-shop">
 						<div class="widget widget-clean">
 							<label>Filters:</label>
-							<a href="#" class="sidebar-filter-clear">Clean All</a>
 						</div><!-- End .widget widget-clean -->
-						@if(!empty($getSubCategoryFilter))
-						<div class="widget widget-collapsible">
-							<h3 class="widget-title">
-								<a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
-									Sub Category
-								</a>
-							</h3><!-- End .widget-title -->
-
-							<div class="collapse show" id="widget-1">
-								<div class="widget-body">
-									<div class="filter-items filter-items-count">
-										@foreach($getSubCategoryFilter as $f_category)
-										<div class="filter-item">
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input ChangeCategory" value="{{$f_category->id}}" id="cat-{{$f_category->id}}">
-												<label class="custom-control-label" for="cat-{{$f_category->id}}">{{$f_category->name}}</label>
-											</div><!-- End .custom-checkbox -->
-											<span class="item-count">{{ $f_category->TotalProduct() }}</span>
-										</div><!-- End .filter-item -->
-										@endforeach
-									</div><!-- End .filter-items -->
-								</div><!-- End .widget-body -->
-							</div><!-- End .collapse -->
-						</div><!-- End .widget -->
-						@endif
 						<div class="widget widget-collapsible">
 							<h3 class="widget-title">
 								<a data-toggle="collapse" href="#widget-3" role="button" aria-expanded="true" aria-controls="widget-3">
@@ -134,7 +93,7 @@
 						</div><!-- End .widget -->
 
 						<div class="widget widget-collapsible">
-							<h3 class="widget-title">
+							<h3 class="widget-title"
 								<a data-toggle="collapse" href="#widget-4" role="button" aria-expanded="true" aria-controls="widget-4">
 									Brand
 								</a>
@@ -152,27 +111,6 @@
 										</div><!-- End .filter-item -->
 										@endforeach
 									</div><!-- End .filter-items -->
-								</div><!-- End .widget-body -->
-							</div><!-- End .collapse -->
-						</div><!-- End .widget -->
-
-						<div class="widget widget-collapsible">
-							<h3 class="widget-title">
-								<a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
-									Price
-								</a>
-							</h3><!-- End .widget-title -->
-
-							<div class="collapse show" id="widget-5">
-								<div class="widget-body">
-									<div class="filter-price">
-										<div class="filter-price-text">
-											Price Range:
-											<span id="filter-price-range"></span>
-										</div><!-- End .filter-price-text -->
-
-										<div id="price-slider"></div><!-- End #price-slider -->
-									</div><!-- End .filter-price -->
 								</div><!-- End .widget-body -->
 							</div><!-- End .collapse -->
 						</div><!-- End .widget -->

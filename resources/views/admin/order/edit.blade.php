@@ -57,6 +57,8 @@
                       <th>Qty</th>
                       <th>Price</th>
                       <th>Color Name</th>
+                      <th>Size Name</th>
+                      <th>Size Amount</th>
                       <th>Total Amount</th>
                     </tr>
                   </thead>
@@ -73,6 +75,8 @@
                       <td>{{ $value->quantity }}</td>
                       <td>{{ $value->price }}</td>
                       <td>{{ $value->color_name }}</td>
+                      <td>{{ $value->size_name }}</td>
+                      <td>{{ $value->size_amount }}</td>
                       <td>{{ $value->total_price }}</td>
                     </tr>
                     @endforeach

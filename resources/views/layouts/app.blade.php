@@ -11,7 +11,7 @@
     @if(!empty($meta_keywords))
     <meta name="keywords" content="{{ $meta_keywords }}">
     @endif
-    <link rel="shortcut icon" href="{{ url('assets/images/icons/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{ url('assets/images/tts.png')}}">
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/plugins/owl-carousel/owl.carousel.css') }}">
@@ -72,12 +72,6 @@
                                                 <span>LOG IN</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" name="is_remember" class="custom-control-input" id="signin-remember">
-                                                <label class="custom-control-label" for="signin-remember">Remember Me</label>
-                                            </div><!-- End .custom-checkbox -->
-
-                                            <a href="#" class="forgot-link">Forgot Your Password?</a>
                                         </div><!-- End .form-footer -->
                                     </form>
                                 </div><!-- .End .tab-pane -->
@@ -103,30 +97,8 @@
                                                 <span>SIGN UP</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
-
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="register-policy" required>
-                                                <label class="custom-control-label" for="register-policy">I agree to the <a href="#">privacy policy</a> *</label>
-                                            </div><!-- End .custom-checkbox -->
                                         </div><!-- End .form-footer -->
                                     </form>
-                                    <div class="form-choice">
-                                        <p class="text-center">or sign in with</p>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <a href="#" class="btn btn-login btn-g">
-                                                    <i class="icon-google"></i>
-                                                    Login With Google
-                                                </a>
-                                            </div><!-- End .col-6 -->
-                                            <div class="col-sm-6">
-                                                <a href="#" class="btn btn-login  btn-f">
-                                                    <i class="icon-facebook-f"></i>
-                                                    Login With Facebook
-                                                </a>
-                                            </div><!-- End .col-6 -->
-                                        </div><!-- End .row -->
-                                    </div><!-- End .form-choice -->
                                 </div><!-- .End .tab-pane -->
                             </div><!-- End .tab-content -->
                         </div><!-- End .form-tab -->

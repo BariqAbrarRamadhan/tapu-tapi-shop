@@ -112,6 +112,6 @@ class PaymentController extends Controller
             $order_item->total_price = $cart->price;
             $order_item->save();
         }
-        
+        return redirect()->back();
     }
 }
