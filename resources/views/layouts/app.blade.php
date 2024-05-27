@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ url('assets/css/plugins/magnific-popup/magnific-popup.css') }}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ url('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ url('resources/css/app.css')}}">
     @yield('style')
 </head>
 
