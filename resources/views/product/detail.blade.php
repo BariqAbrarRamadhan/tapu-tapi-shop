@@ -10,7 +10,6 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('') }}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{{ url($getProduct->getCategory->slug) }}">{{  $getProduct->getCategory->name }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ url($getProduct->getCategory->slug.'/'.$getProduct->getSubCategory->slug) }}">{{  $getProduct->getSubCategory->name }}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ $getProduct->title }}</li>
                     </ol>
                 </div><!-- End .container -->
@@ -104,7 +103,6 @@
                                         <div class="product-cat">
                                             <span>Category:</span>
                                             <a href="{{ url($getProduct->getCategory->slug) }}">{{ $getProduct->getCategory->name }}</a>,
-                                            <a href="{{ url($getProduct->getCategory->slug.'/'.$getProduct->getSubCategory->slug) }}">{{ $getProduct->getSubCategory->name }}</a>
                                         </div><!-- End .product-cat -->
 
                                         <!-- <div class="social-icons social-icons-sm">

@@ -55,7 +55,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Sub Category <span style="color:red">*</span></label>
-                        <select class="form-control" id="getSubCategory" name="sub_category_id" required>
+                        <select class="form-control" id="getSubCategory" name="sub_category_id">
                           <option>Select Sub Category</option>
                           @foreach($getSubCategory as $sub_category)
                             <option {{ ($product->sub_category_id == $sub_category->id) ? 'selected' : '' }} value="{{ $sub_category->id }}">{{ $sub_category->name }}</option>
@@ -278,20 +278,22 @@
   $('body').delegate('#ChangeCategory', 'change', function(e) {
     var id = $(this).val();
     $.ajax({
-      type: "POST",
-      url: "{{ url('admin/get_sub_category') }}",
-      data: {
-        id: id,
-        _token: "{{ csrf_token() }}"
-      },
-      dataType: "json",
-      success: function(data) {
-        $('#getSubCategory').html(data.html);
-      },
-      error: function(data) {
-      }
-    })
-  })
+        type: "POST",
+        url: "{{ url('admin/get_sub_category') }}",
+        data: {
+            id: id,
+            _token: "{{ csrf_token() }}"
+        },
+        dataType: "json",
+        success: function(data) {
+            $('#getSubCategory').html(data.html);
+        },
+        error: function(data) {
+            console.error("Error fetching sub categories:", data);
+        }
+    });
+});
+
 </script>
 
 @endsection
