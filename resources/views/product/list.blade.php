@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('style')
-<link rel="stylesheet" href="{{ url('assets/css/plugins/nouislider/nouislider.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/css/plugins/nouislider/nouislider.css')}}">
 <style>
 	.active-color {
 		border: 4px solid #000 !important;

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('style')
-<link rel="stylesheet" href="{{ url('public/assets/plugins/summernote/summernote-bs4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
 @endsection
 
 @section('content')

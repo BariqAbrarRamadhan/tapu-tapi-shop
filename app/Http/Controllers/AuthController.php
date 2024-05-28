@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     public function login_admin()
     {
-        if(!empty(Auth::check()) && Auth::user()->is_admin == 1 ) {
+        if (!empty(Auth::check()) && Auth::user()->is_admin == 1) {
             return redirect('admin/dashboard');
         }
         return view('admin.auth.login');
@@ -21,9 +21,10 @@ class AuthController extends Controller
     public function auth_login_admin(Request $request)
     {
         $remember = !empty($request->remember) ? true : false;
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_admin' => 1, 'status' => 0, 'is_deleted' => 0], $remember)) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_admin' => 1, 'status' => 0, 'is_deleted' => 0], $remember)) {
             return redirect('admin/dashboard');
-        } if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_admin' => 0])) {
+        }
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_admin' => 0])) {
             return redirect()->back()->with('error', 'Anda tidak memiliki akses ke halaman admin');
         } else {
             return redirect()->back()->with('error', 'Email atau password salah');
@@ -39,7 +40,7 @@ class AuthController extends Controller
     public function auth_login(Request $request)
     {
         $remember = !empty($request->is_remember) ? true : false;
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 0, 'is_deleted' => 0], $remember)) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 0, 'is_deleted' => 0], $remember)) {
             $json['status'] = 'true';
             $json['message'] = 'Login berhasil';
         } else {
@@ -48,12 +49,12 @@ class AuthController extends Controller
         }
         echo json_encode($json);
     }
-    
+
 
     public function auth_register(Request $request)
     {
         $checkEmail = User::checkEmail($request->email);
-        if(empty($checkEmail)) {
+        if (empty($checkEmail)) {
             $save = new User;
             $save->name = $request->name;
             $save->email = $request->email;
